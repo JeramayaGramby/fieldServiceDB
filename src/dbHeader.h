@@ -3,6 +3,9 @@
 
 // Download the libsodium library from https://libsodium.gitbook.io/doc/ and follow the installation instructions
 #include <sodium.h>
+#include <ctime>
+#include <iostream>
+#include <stdexcept>
 
 #include <string>
 #include <vector>
@@ -50,6 +53,43 @@ struct FleetServiceLog {
 
 // Function for generating a cursor object
 mysqlx::RowResult generateCursor(mysqlx::Session& session, const std::string& query);
+
+// Function for adding an entry to the GeneralServiceLog table
+void addGeneralServiceLogEntry(mysqlx::Session& session, const GeneralServiceLog& entry);
+
+// Function for adding an entry to the FleetServiceLog table
+void addFleetServiceLogEntry(mysqlx::Session& session, const FleetServiceLog& entry);
+
+// Function for retrieving entries from the GeneralServiceLog table
+std::vector<GeneralServiceLog> getGeneralServiceLogEntries(mysqlx::Session& session);
+
+// Function for retrieving entries from the FleetServiceLog table
+std::vector<FleetServiceLog> getFleetServiceLogEntries(mysqlx::Session& session);
+
+// Function for updating an entry in the GeneralServiceLog table
+void updateGeneralServiceLogEntry(mysqlx::Session& session, const GeneralServiceLog& entry);
+
+// Function for updating an entry in the FleetServiceLog table
+void updateFleetServiceLogEntry(mysqlx::Session& session, const FleetServiceLog& entry);
+
+// Function for deleting an entry from the GeneralServiceLog table
+void deleteGeneralServiceLogEntry(mysqlx::Session& session, uint64_t id);
+
+// Function for deleting an entry from the FleetServiceLog table
+void deleteFleetServiceLogEntry(mysqlx::Session& session, uint64_t id);
+
+// Function for updating an entry in the FleetServiceLog table
+void updateFleetServiceLogEntry(mysqlx::Session& session, const FleetServiceLog& entry);
+
+// Function for versioning off the database
+void versionDatabase(mysqlx::Session& session);
+
+
+// Function to perform a query on the database
+mysqlx::RowResult performQuery(mysqlx::Session& session, const std::string& query);
+
+// Function to wrap around the database query function
+
 
 
 
